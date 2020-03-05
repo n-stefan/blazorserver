@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@inject ICookieService CookieService
+
+<h1>Fortune cookies</h1>
+
+<p>Press the button to receive a random fortune cookie</p>
+
+<button class="btn btn-primary" @onclick="ShowCookie">Show me my cookie</button>
+
+<div class="alert alert-info"><b>@CookieMessage</b></div>
+
+<p>Actual service type: <b>@CookieService.GetType()</b></p>
+
+@code {
+    private string CookieMessage;
+
+    private async Task ShowCookie()
+    {
+        var cookie = await CookieService.GetRandomCookie();
+        CookieMessage = cookie == null ? string.Empty : cookie.Message;
+    }
+}
