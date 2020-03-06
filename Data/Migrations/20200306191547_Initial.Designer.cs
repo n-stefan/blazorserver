@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CookieDbContext))]
-    [Migration("20200302181748_Initial")]
+    [Migration("20200306191547_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 2,
-                            Message = "A computer scientist is someone who fixes things that aren''t broken."
+                            Message = "A computer scientist is someone who fixes things that aren't broken."
                         },
                         new
                         {

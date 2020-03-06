@@ -27,7 +27,7 @@ namespace Data.Migrations
             migrationBuilder.InsertData(
                 table: "Cookies",
                 columns: new[] { "Id", "Message" },
-                values: new object[] { 2, "A computer scientist is someone who fixes things that aren''t broken." });
+                values: new object[] { 2, "A computer scientist is someone who fixes things that aren't broken." });
 
             migrationBuilder.InsertData(
                 table: "Cookies",

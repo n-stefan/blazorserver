@@ -37,7 +37,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 2,
-                            Message = "A computer scientist is someone who fixes things that aren''t broken."
+                            Message = "A computer scientist is someone who fixes things that aren't broken."
                         },
                         new
                         {
