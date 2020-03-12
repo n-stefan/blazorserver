@@ -15,7 +15,10 @@ namespace Grpc
         public override async Task<Cookie> GetRandomCookie(Empty request, ServerCallContext context)
         {
             var cookie = await _repository.GetRandomCookie();
-            return (cookie == null) ? null : new Cookie { Id = cookie.Id, Message = cookie.Message };
+            if (cookie == null)
+                throw new RpcException(new Status(StatusCode.NotFound, "Cookie not found."));
+            else
+                return new Cookie { Id = cookie.Id, Message = cookie.Message };
         }
     }
 }

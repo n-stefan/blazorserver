@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using System.Threading.Tasks;
 
 namespace Services
@@ -12,8 +13,15 @@ namespace Services
 
         public async Task<CookieDto> GetRandomCookie()
         {
-            var cookie = await _repository.GetRandomCookie();
-            return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);
+            try
+            {
+                var cookie = await _repository.GetRandomCookie();
+                return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

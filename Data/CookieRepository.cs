@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +16,11 @@ namespace Data
             _random = new Random();
         }
 
-        public ValueTask<Cookie> GetRandomCookie()
+        public Task<Cookie> GetRandomCookie()
         {
-            var id = _random.Next(1, _context.Cookies.Count() + 1);
-            return _context.Cookies.FindAsync(id);
+            var cookies = _context.Cookies.AsNoTracking();
+            var id = _random.Next(1, cookies.Count() + 1);
+            return cookies.SingleOrDefaultAsync(c => c.Id == id);
         }
     }
 }

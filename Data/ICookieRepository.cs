@@ -4,6 +4,6 @@ namespace Data
 {
     public interface ICookieRepository
     {
-        ValueTask<Cookie> GetRandomCookie();
+        Task<Cookie> GetRandomCookie();
     }
 }
