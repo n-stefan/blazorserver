@@ -7,6 +7,11 @@ namespace Data
 {
     public class CookieRepository : ICookieRepository
     {
+        private static readonly Func<CookieDbContext, int> _countQuery = EF.CompileQuery((CookieDbContext context) =>
+            context.Cookies.AsNoTracking().Count());
+        private static readonly Func<CookieDbContext, int, Task<Cookie>> _singleQuery = EF.CompileAsyncQuery((CookieDbContext context, int id) =>
+            context.Cookies.AsNoTracking().SingleOrDefault(c => c.Id == id));
+
         private readonly CookieDbContext _context;
         private readonly Random _random;
 
@@ -18,9 +23,8 @@ namespace Data
 
         public Task<Cookie> GetRandomCookie()
         {
-            var cookies = _context.Cookies.AsNoTracking();
-            var id = _random.Next(1, cookies.Count() + 1);
-            return cookies.SingleOrDefaultAsync(c => c.Id == id);
+            var id = _random.Next(1, _countQuery(_context) + 1);
+            return _singleQuery(_context, id);
         }
     }
 }
