@@ -8,15 +8,15 @@ namespace Rest.Controllers
     [Route("[controller]")]
     public class CookieController : ControllerBase
     {
-        private readonly ICookieRepository _repository;
+        private readonly IRepository<Cookie> _repository;
 
-        public CookieController(ICookieRepository repository) =>
+        public CookieController(IRepository<Cookie> repository) =>
             _repository = repository;
 
         [HttpGet("random")]
         public async Task<ActionResult<Cookie>> GetRandomCookie()
         {
-            var cookie = await _repository.GetRandomCookie();
+            var cookie = await _repository.GetRandom();
             if (cookie == null)
                 return NotFound(null);
             else

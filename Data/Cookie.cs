@@ -1,7 +1,7 @@
 ﻿
 namespace Data
 {
-    public class Cookie
+    public class Cookie : IEntity
     {
         public int Id { get; set; }
 

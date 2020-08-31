@@ -2,9 +2,13 @@
 
 namespace Data
 {
-    public class CookieDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public CookieDbContext(DbContextOptions<CookieDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+        {
+            ChangeTracker.AutoDetectChangesEnabled = false;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
 
         public DbSet<Cookie> Cookies { get; set; }
 

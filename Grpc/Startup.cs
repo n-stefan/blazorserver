@@ -22,8 +22,8 @@ namespace Grpc
         {
             services.AddGrpc();
 
-            services.AddDbContextPool<CookieDbContext>(o => o.UseSqlite(Configuration["ConnectionString"]));
-            services.AddScoped<ICookieRepository, CookieRepository>();
+            services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(Configuration["ConnectionString"]));
+            services.AddScoped<IRepository<Data.Cookie>, EfRepository<Data.Cookie, ApplicationDbContext>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

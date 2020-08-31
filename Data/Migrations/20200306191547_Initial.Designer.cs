@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(CookieDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20200306191547_Initial")]
     partial class Initial
     {

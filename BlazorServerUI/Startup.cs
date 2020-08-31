@@ -24,8 +24,8 @@ namespace BlazorServerUI
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddDbContextPool<CookieDbContext>(o => o.UseSqlite(Configuration["ConnectionString"]));
-            services.AddScoped<ICookieRepository, CookieRepository>();
+            services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(Configuration["ConnectionString"]));
+            services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, ApplicationDbContext>>();
 
             services.AddScoped<ICookieService, DirectCookieService>();
             //services.AddScoped<ICookieService, GrpcCookieService>();
