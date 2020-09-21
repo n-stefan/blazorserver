@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -14,17 +15,25 @@ namespace Services
 
         public async Task<CookieDto> GetRandomCookie()
         {
-            var response = await _httpClient.GetAsync("cookie/random");
-            switch (response.StatusCode)
+            try
             {
-                case HttpStatusCode.OK:
-                    var content = await response.Content.ReadAsStringAsync();
-                    var cookie = JsonSerializer.Deserialize<Data.Cookie>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    return new CookieDto(cookie.Id, cookie.Message);
-                case HttpStatusCode.NotFound:
-                default:
-                    return null;
-            };
+                var response = await _httpClient.GetAsync("cookie/random");
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var content = await response.Content.ReadAsStringAsync();
+                        var cookie = JsonSerializer.Deserialize<Data.Cookie>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                        return new CookieDto(cookie.Id, cookie.Message);
+                    case HttpStatusCode.NotFound:
+                        return new CookieDto(CookieDto.CookieNotFound);
+                    default:
+                        return new CookieDto(CookieDto.AnErrorOccurred);
+                };
+            }
+            catch (Exception)
+            {
+                return new CookieDto(CookieDto.AnErrorOccurred);
+            }
 
             //var cookie = await _httpClient.GetJsonAsync<Cookie>("cookie/random");
             //return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);

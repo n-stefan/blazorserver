@@ -8,16 +8,26 @@
 
 <button class="btn btn-primary" @onclick="ShowCookie">Show me my cookie</button>
 
-<div class="alert alert-info"><b>@CookieMessage</b></div>
+@if (CookieMessage != null)
+{
+    <div class="alert alert-info"><b>@CookieMessage</b></div>
+}
+
+@if (ErrorMessage != null)
+{
+    <div class="alert alert-danger"><b>@ErrorMessage</b></div>
+}
 
 <p>Actual service type: <b>@CookieService.GetType()</b></p>
 
 @code {
     private string CookieMessage;
+    private string ErrorMessage;
 
     private async Task ShowCookie()
     {
         var cookie = await CookieService.GetRandomCookie();
-        CookieMessage = cookie == null ? string.Empty : cookie.Message;
+        CookieMessage = cookie.Message;
+        ErrorMessage = cookie.Error;
     }
 }

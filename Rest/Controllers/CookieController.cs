@@ -17,10 +17,9 @@ namespace Rest.Controllers
         public async Task<ActionResult<Cookie>> GetRandomCookie()
         {
             var cookie = await _repository.GetRandom();
-            if (cookie == null)
-                return NotFound(null);
-            else
-                return Ok(cookie);
+            return (cookie == null) ?
+                NotFound() :
+                Ok(cookie);
         }
     }
 }

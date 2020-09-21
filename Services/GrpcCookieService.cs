@@ -3,6 +3,7 @@ using Grpc;
 using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 
 namespace Services
@@ -21,15 +22,15 @@ namespace Services
                 var channel = GrpcChannel.ForAddress(Configuration["GrpcBaseUrl"]);
                 var client = new CookieContract.CookieContractClient(channel);
                 var cookie = await client.GetRandomCookieAsync(new Empty());
-                return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);
+                return new CookieDto(cookie.Id, cookie.Message);
             }
             catch (RpcException ex) when (ex.StatusCode == StatusCode.NotFound)
             {
-                return null;
+                return new CookieDto(CookieDto.CookieNotFound);
             }
-            catch (RpcException)
+            catch (Exception)
             {
-                return null;
+                return new CookieDto(CookieDto.AnErrorOccurred);
             }
         }
     }

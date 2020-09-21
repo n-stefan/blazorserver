@@ -16,11 +16,13 @@ namespace Services
             try
             {
                 var cookie = await _repository.GetRandom();
-                return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);
+                return (cookie == null) ?
+                    new CookieDto(CookieDto.CookieNotFound) :
+                    new CookieDto(cookie.Id, cookie.Message);
             }
             catch (Exception)
             {
-                return null;
+                return new CookieDto(CookieDto.AnErrorOccurred);
             }
         }
     }
