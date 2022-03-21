@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Data.Migrations
 {
     public partial class Initial : Migration
@@ -10,9 +12,9 @@ namespace Data.Migrations
                 name: "Cookies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Message = table.Column<string>(nullable: true)
+                    Message = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

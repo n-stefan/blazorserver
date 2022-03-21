@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
@@ -12,8 +14,7 @@ namespace Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
 
             modelBuilder.Entity("Data.Cookie", b =>
                 {

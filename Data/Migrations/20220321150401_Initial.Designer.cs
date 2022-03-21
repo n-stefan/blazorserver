@@ -5,17 +5,18 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200306191547_Initial")]
+    [Migration("20220321150401_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
 
             modelBuilder.Entity("Data.Cookie", b =>
                 {
