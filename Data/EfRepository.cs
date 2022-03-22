@@ -14,13 +14,11 @@ namespace Data
         private static readonly Func<TContext, int, Task<TEntity>> _entityByIdQuery =
             EF.CompileAsyncQuery((TContext context, int id) => context.Set<TEntity>().SingleOrDefault(e => e.Id == id));
 
-        private readonly Random _random;
         private readonly TContext _context;
         private readonly int[] _ids;
 
         public EfRepository(TContext context)
         {
-            _random = new Random();
             _context = context;
             //Assume no entities will be deleted/inserted
             _ids = _allIdsQuery(_context).ToArray();
@@ -28,7 +26,7 @@ namespace Data
 
         public Task<TEntity> GetRandom()
         {
-            var index = _random.Next(0, _ids.Length);
+            var index = Random.Shared.Next(0, _ids.Length);
             return _entityByIdQuery(_context, _ids[index]);
         }
     }
