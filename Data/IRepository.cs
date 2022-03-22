@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Data
+namespace Data;
+
+public interface IRepository<TEntity>
 {
-    public interface IRepository<TEntity>
-    {
-        Task<TEntity> GetRandom();
-    }
+    Task<TEntity> GetRandom();
 }

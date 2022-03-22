@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Services
+namespace Services;
+
+public interface ICookieService
 {
-    public interface ICookieService
-    {
-        Task<CookieDto> GetRandomCookie();
-    }
+    Task<CookieDto> GetRandomCookie();
 }

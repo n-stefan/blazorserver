@@ -2,28 +2,27 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Services;
+
+public class DirectCookieService : ICookieService
 {
-    public class DirectCookieService : ICookieService
+    private readonly IRepository<Cookie> _repository;
+
+    public DirectCookieService(IRepository<Cookie> repository) =>
+        _repository = repository;
+
+    public async Task<CookieDto> GetRandomCookie()
     {
-        private readonly IRepository<Cookie> _repository;
-
-        public DirectCookieService(IRepository<Cookie> repository) =>
-            _repository = repository;
-
-        public async Task<CookieDto> GetRandomCookie()
+        try
         {
-            try
-            {
-                var cookie = await _repository.GetRandom();
-                return (cookie == null) ?
-                    new CookieDto(CookieDto.CookieNotFound) :
-                    new CookieDto(cookie.Id, cookie.Message);
-            }
-            catch (Exception)
-            {
-                return new CookieDto(CookieDto.AnErrorOccurred);
-            }
+            var cookie = await _repository.GetRandom();
+            return (cookie == null) ?
+                new CookieDto(CookieDto.CookieNotFound) :
+                new CookieDto(cookie.Id, cookie.Message);
+        }
+        catch (Exception)
+        {
+            return new CookieDto(CookieDto.AnErrorOccurred);
         }
     }
 }
