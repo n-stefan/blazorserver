@@ -1,6 +1,4 @@
-﻿using Data;
-using System;
-using System.Threading.Tasks;
+﻿using Cookie = Data.Cookie;
 
 namespace Services;
 

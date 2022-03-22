@@ -1,11 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using Grpc;
-using Grpc.Core;
-using Grpc.Net.Client;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Threading.Tasks;
-
+﻿
 namespace Services;
 
 public class GrpcCookieService : ICookieService

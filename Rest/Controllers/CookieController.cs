@@ -1,7 +1,4 @@
-﻿using Data;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
+﻿
 namespace Rest.Controllers;
 
 [ApiController]
