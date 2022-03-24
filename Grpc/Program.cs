@@ -1,11 +1,27 @@
 
-namespace Grpc;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddGrpc();
+
+builder.Services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IRepository<Data.Cookie>, EfRepository<Data.Cookie, ApplicationDbContext>>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public static void Main(string[] args) =>
-        CreateHostBuilder(args).Build().Run();
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGrpcService<CookieService>();
+    endpoints.MapGet("/", async context =>
+    {
+        await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+    });
+});
+
+await app.RunAsync();
