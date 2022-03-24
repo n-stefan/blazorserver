@@ -1,11 +1,27 @@
 
-namespace Rest;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddControllers();
+
+builder.Services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, ApplicationDbContext>>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public static void Main(string[] args) =>
-        CreateHostBuilder(args).Build().Run();
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+await app.RunAsync();

@@ -10,7 +10,7 @@ builder.Services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, Application
 // Register only one of the following services
 builder.Services.AddScoped<ICookieService, DirectCookieService>();
 //builder.Services.AddScoped<ICookieService, GrpcCookieService>();
-//builder.Services.AddHttpClient<ICookieService, RestCookieService>(client => client.BaseAddress = new Uri(Configuration["RestBaseUrl"]));
+//builder.Services.AddHttpClient<ICookieService, RestCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["RestBaseUrl"]));
 
 var app = builder.Build();
 
