@@ -15,7 +15,7 @@ public class EfRepository<TEntity, TContext> : IRepository<TEntity> where TEntit
     public EfRepository(TContext context)
     {
         _context = context;
-        //Assume no entities will be deleted/inserted
+        // Assume no entities will be deleted / inserted
         _ids = _allIdsQuery(_context).ToArray();
     }
 
