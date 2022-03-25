@@ -3,16 +3,16 @@ namespace Services;
 
 public class GrpcCookieService : ICookieService
 {
-    public GrpcCookieService(IConfiguration configuration) =>
-        Configuration = configuration;
+    private readonly IConfiguration _configuration;
 
-    public IConfiguration Configuration { get; }
+    public GrpcCookieService(IConfiguration configuration) =>
+        _configuration = configuration;
 
     public async Task<CookieDto> GetRandomCookie()
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(Configuration["GrpcBaseUrl"]);
+            var channel = GrpcChannel.ForAddress(_configuration["GrpcBaseUrl"]);
             var client = new CookieContract.CookieContractClient(channel);
             var cookie = await client.GetRandomCookieAsync(new Empty());
             return new CookieDto(cookie.Id, cookie.Message);

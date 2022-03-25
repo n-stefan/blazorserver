@@ -13,10 +13,8 @@ public class CookieDto
 
     public const string AnErrorOccurred = "An error occurred.";
 
-    public CookieDto(string error)
-    {
+    public CookieDto(string error) =>
         Error = error;
-    }
 
     public CookieDto(int id, string message)
     {

@@ -1,4 +1,6 @@
 ﻿
+using Cookie = Data.Cookie;
+
 namespace Services;
 
 public class RestCookieService : ICookieService
@@ -17,7 +19,7 @@ public class RestCookieService : ICookieService
             {
                 case HttpStatusCode.OK:
                     var content = await response.Content.ReadAsStringAsync();
-                    var cookie = JsonSerializer.Deserialize<Data.Cookie>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    var cookie = JsonSerializer.Deserialize<Cookie>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     return new CookieDto(cookie.Id, cookie.Message);
                 case HttpStatusCode.NotFound:
                     return new CookieDto(CookieDto.CookieNotFound);

@@ -1,4 +1,5 @@
-﻿using Cookie = Data.Cookie;
+﻿
+using Cookie = Data.Cookie;
 
 namespace Services;
 
