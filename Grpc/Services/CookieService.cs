@@ -1,5 +1,5 @@
 
-namespace Grpc;
+namespace Grpc.Services;
 
 public class CookieService : CookieContract.CookieContractBase
 {
