@@ -11,6 +11,7 @@ builder.Services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, Application
 builder.Services.AddScoped<ICookieService, DirectCookieService>();
 //builder.Services.AddScoped<ICookieService, GrpcCookieService>();
 //builder.Services.AddHttpClient<ICookieService, RestCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["RestBaseUrl"]));
+//builder.Services.AddHttpClient<ICookieService, GraphQLCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["GraphQLBaseUrl"]));
 
 var app = builder.Build();
 
@@ -29,7 +30,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapBlazorHub();
