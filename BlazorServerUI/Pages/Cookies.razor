@@ -10,15 +10,15 @@
 
 @if (CookieMessage != null)
 {
-    <div class="alert alert-info mt-2"><b>@CookieMessage</b></div>
+    <div class="alert alert-info mt-2"><strong>@CookieMessage</strong></div>
 }
 
 @if (ErrorMessage != null)
 {
-    <div class="alert alert-danger mt-2"><b>@ErrorMessage</b></div>
+    <div class="alert alert-danger mt-2"><strong>@ErrorMessage</strong></div>
 }
 
-<p>Actual service type: <b>@CookieService.GetType()</b></p>
+<p>Actual service type: <strong>@CookieService.GetType()</strong></p>
 
 @code {
     private string CookieMessage;
