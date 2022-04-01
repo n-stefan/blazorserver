@@ -18,8 +18,7 @@ public class RestCookieService : ICookieService
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    var content = await response.Content.ReadAsStringAsync();
-                    var cookie = JsonSerializer.Deserialize<Cookie>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    var cookie = await response.Content.ReadFromJsonAsync<Cookie>();
                     return new CookieDto(cookie.Id, cookie.Message);
                 case HttpStatusCode.NotFound:
                     return new CookieDto(CookieDto.CookieNotFound);
@@ -31,8 +30,5 @@ public class RestCookieService : ICookieService
         {
             return new CookieDto(CookieDto.AnErrorOccurred);
         }
-
-        //var cookie = await _httpClient.GetJsonAsync<Cookie>("cookie/random");
-        //return (cookie == null) ? null : new CookieDto(cookie.Id, cookie.Message);
     }
 }

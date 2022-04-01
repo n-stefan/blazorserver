@@ -6,5 +6,4 @@ global using Grpc.Net.Client;
 global using Microsoft.Extensions.Configuration;
 global using System.Net;
 global using System.Net.Http.Json;
-global using System.Text.Json;
 global using System.Text.Json.Nodes;
