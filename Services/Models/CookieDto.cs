@@ -1,5 +1,5 @@
 ﻿
-namespace Services;
+namespace Services.Models;
 
 public class CookieDto
 {
@@ -13,7 +13,7 @@ public class CookieDto
 
     public const string AnErrorOccurred = "An error occurred.";
 
-    public CookieDto() {}
+    public CookieDto() { }
 
     public CookieDto(string error) =>
         Error = error;
