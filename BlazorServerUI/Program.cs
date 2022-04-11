@@ -6,7 +6,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("Default")));
-builder.Services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, ApplicationDbContext>>();
+builder.Services.AddScoped<IRepository<Cookie>, CookieRepository>();
 
 // Register only one of the following services
 builder.Services.AddScoped<ICookieService, DirectCookieService>();

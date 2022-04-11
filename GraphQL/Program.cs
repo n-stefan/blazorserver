@@ -6,7 +6,7 @@ builder.Services
     .AddQueryType<CookieQuery>();
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("Default")));
-builder.Services.AddScoped<IRepository<Cookie>, EfRepository<Cookie, ApplicationDbContext>>();
+builder.Services.AddScoped<IRepository<Cookie>, CookieRepository>();
 
 var app = builder.Build();
 
@@ -17,4 +17,4 @@ if (app.Environment.IsDevelopment())
 
 app.MapGraphQL();
 
-await app.RunAsync();
+app.Run();

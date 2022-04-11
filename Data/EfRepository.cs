@@ -1,7 +1,7 @@
 ﻿
 namespace Data;
 
-public class EfRepository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity where TContext : DbContext
+public abstract class EfRepository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity where TContext : DbContext
 {
     private static readonly Func<TContext, IEnumerable<int>> _allIdsQuery =
         EF.CompileQuery((TContext context) => context.Set<TEntity>().Select(e => e.Id));
@@ -12,7 +12,7 @@ public class EfRepository<TEntity, TContext> : IRepository<TEntity> where TEntit
     private readonly TContext _context;
     private readonly int[] _ids;
 
-    public EfRepository(TContext context)
+    protected EfRepository(TContext context)
     {
         _context = context;
         // Assume no entities will be deleted / inserted
