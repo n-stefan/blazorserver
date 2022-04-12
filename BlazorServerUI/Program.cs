@@ -8,7 +8,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<IRepository<Cookie>, CookieRepository>();
 
-// Register only one of the following services
+// Register only one of the following services.
 builder.Services.AddScoped<ICookieService, DirectCookieService>();
 //builder.Services.AddScoped<ICookieService, GrpcCookieService>();
 //builder.Services.AddHttpClient<ICookieService, RestCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["RestBaseUrl"]));

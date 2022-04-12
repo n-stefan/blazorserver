@@ -20,7 +20,7 @@
     <div class="alert alert-danger mt-2"><strong>@ErrorMessage</strong></div>
 }
 
-<p>Actual service type: <strong>@CookieService.GetType()</strong></p>
+<p>Actual service type: <strong>@CookieService.GetType().Name</strong></p>
 
 @code {
     private string CookieMessage;
