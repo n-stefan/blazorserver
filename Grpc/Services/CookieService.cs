@@ -4,9 +4,13 @@ namespace Grpc.Services;
 public class CookieService : CookieContract.CookieContractBase
 {
     private readonly IRepository<Data.Cookie> _repository;
+    private readonly ILogger<CookieService> _logger;
 
-    public CookieService(IRepository<Data.Cookie> repository) =>
+    public CookieService(IRepository<Data.Cookie> repository, ILogger<CookieService> logger)
+    {
         _repository = repository;
+        _logger = logger;
+    }
 
     public override async Task<Cookie> GetRandomCookie(Empty request, ServerCallContext context)
     {
