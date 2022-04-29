@@ -1,0 +1,11 @@
+﻿global using System.Net.Http.Json;
+global using BlazorServer.Core.Dtos;
+global using BlazorServer.Core.Entities;
+global using BlazorServer.Core.Interfaces;
+global using BlazorServer.SharedKernel.Interfaces;
+global using Google.Protobuf.WellKnownTypes;
+global using Grpc;
+global using Grpc.Core;
+global using Grpc.Net.Client;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;

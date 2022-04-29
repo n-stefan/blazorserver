@@ -1,0 +1,25 @@
+﻿
+namespace BlazorServer.Infrastructure.Services;
+
+public class DirectCookieService : ICookieService
+{
+  private readonly IRepository<Cookie> _repository;
+
+  public DirectCookieService(IRepository<Cookie> repository) =>
+      _repository = repository;
+
+  public async Task<CookieDto> GetRandomCookie()
+  {
+    try
+    {
+      var cookie = await _repository.GetRandom();
+      return (cookie == null) ?
+          new CookieDto(CookieDto.CookieNotFound) :
+          new CookieDto(cookie.Id, cookie.Message);
+    }
+    catch (Exception)
+    {
+      return new CookieDto(CookieDto.AnErrorOccurred);
+    }
+  }
+}
