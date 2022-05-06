@@ -1,5 +1,5 @@
 ﻿
-namespace BlazorServer.Infrastructure.Services;
+namespace BlazorServer.Core.Services;
 
 public class DirectCookieService : ICookieService
 {
