@@ -32,6 +32,7 @@ public class DirectCookieService_GetRandomCookie
 
     var result = await _directCookieService.GetRandomCookie();
 
+    _mockRepository.Verify(r => r.GetRandom(), Times.Once);
     Assert.Equal(expectedErrorMessage, result.Error);
   }
 
@@ -44,6 +45,7 @@ public class DirectCookieService_GetRandomCookie
 
     var result = await _directCookieService.GetRandomCookie();
 
+    _mockRepository.Verify(r => r.GetRandom(), Times.Once);
     Assert.Equal(expectedErrorMessage, result.Error);
   }
 
@@ -57,6 +59,7 @@ public class DirectCookieService_GetRandomCookie
 
     var result = await _directCookieService.GetRandomCookie();
 
+    _mockRepository.Verify(r => r.GetRandom(), Times.Once);
     Assert.Equal(expectedErrorMessage, result.Error);
     Assert.Equal(cookie.Id, result.Id);
     Assert.Equal(cookie.Message, result.Message);
