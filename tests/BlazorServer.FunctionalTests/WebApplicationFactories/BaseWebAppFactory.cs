@@ -1,13 +1,8 @@
 ﻿
-namespace BlazorServer.FunctionalTests;
+namespace BlazorServer.FunctionalTests.WebApplicationFactories;
 
-public class CustomWebApplicationFactory : WebApplicationFactory<Program>
+public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
-  protected override void ConfigureWebHost(IWebHostBuilder builder)
-  {
-    builder.UseUrls("https://localhost:5001");
-  }
-
   protected override IHost CreateHost(IHostBuilder builder)
   {
     var testHost = builder.Build();

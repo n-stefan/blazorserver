@@ -1,7 +1,7 @@
 ﻿
 namespace BlazorServer.FunctionalTests.Pages;
 
-public class Cookies : IClassFixture<CustomWebApplicationFactory>
+public class Cookies
 {
   private static readonly string[] _cookies =
   {
@@ -19,13 +19,7 @@ public class Cookies : IClassFixture<CustomWebApplicationFactory>
     "フレームワークのベンチマーク"
   };
 
-  public Cookies(CustomWebApplicationFactory factory)
-  {
-    factory.CreateDefaultClient();
-  }
-
-  [Fact]
-  public async Task ShowsCookie_Given_ButtonClick()
+  private static async Task ShowsCookieOnClick()
   {
     using var playwright = await Playwright.CreateAsync();
 
@@ -52,5 +46,50 @@ public class Cookies : IClassFixture<CustomWebApplicationFactory>
 
     var text = await element.InnerTextAsync();
     Assert.Contains(text, _cookies);
+  }
+
+  [Fact]
+  public async Task DirectCookieService_ShowsCookieOnClick()
+  {
+    using var uiFactory = new UiWebAppFactory();
+    uiFactory.CreateClient();
+
+    await ShowsCookieOnClick();
+  }
+
+  [Fact]
+  public async Task RestCookieService_ShowsCookieOnClick()
+  {
+    using var restUiFactory = new RestUiWebAppFactory();
+    restUiFactory.CreateClient();
+
+    using var restFactory = new RestWebAppFactory();
+    restFactory.CreateClient();
+
+    await ShowsCookieOnClick();
+  }
+
+  [Fact]
+  public async Task GrpcCookieService_ShowsCookieOnClick()
+  {
+    using var grpcUiFactory = new GrpcUiWebAppFactory();
+    grpcUiFactory.CreateClient();
+
+    using var grpcFactory = new GrpcWebAppFactory();
+    grpcFactory.CreateClient();
+
+    await ShowsCookieOnClick();
+  }
+
+  [Fact]
+  public async Task GraphQlCookieService_ShowsCookieOnClick()
+  {
+    using var graphQlUiFactory = new GraphQlUiWebAppFactory();
+    graphQlUiFactory.CreateClient();
+
+    using var graphQlFactory = new GraphQlWebAppFactory();
+    graphQlFactory.CreateClient();
+
+    await ShowsCookieOnClick();
   }
 }
