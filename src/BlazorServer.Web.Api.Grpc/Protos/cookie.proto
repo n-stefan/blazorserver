@@ -2,12 +2,17 @@ syntax = "proto3";
 
 option csharp_namespace = "Grpc";
 
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 package CookiePackage;
 
 service CookieContract {
-  rpc GetRandomCookie (google.protobuf.Empty) returns (CookieResponse);
+  rpc GetRandomCookie (google.protobuf.Empty) returns (CookieResponse) {
+    option (google.api.http) = {
+      get: "/v1/getrandomcookie"
+    };
+  }
 }
 
 message CookieResponse {
