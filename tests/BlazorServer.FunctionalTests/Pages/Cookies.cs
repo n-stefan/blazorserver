@@ -60,11 +60,11 @@ public class Cookies
   [Fact]
   public async Task RestCookieService_ShowsCookieOnClick()
   {
-    using var restUiFactory = new RestUiWebAppFactory();
-    restUiFactory.CreateClient();
-
     using var restFactory = new RestWebAppFactory();
     restFactory.CreateClient();
+
+    using var restUiFactory = new RestUiWebAppFactory();
+    restUiFactory.CreateClient();
 
     await ShowsCookieOnClick();
   }
@@ -72,11 +72,23 @@ public class Cookies
   [Fact]
   public async Task GrpcCookieService_ShowsCookieOnClick()
   {
+    using var grpcFactory = new GrpcWebAppFactory();
+    grpcFactory.CreateClient();
+
     using var grpcUiFactory = new GrpcUiWebAppFactory();
     grpcUiFactory.CreateClient();
 
+    await ShowsCookieOnClick();
+  }
+
+  [Fact]
+  public async Task GrpcJsonCookieService_ShowsCookieOnClick()
+  {
     using var grpcFactory = new GrpcWebAppFactory();
     grpcFactory.CreateClient();
+
+    using var grpcJsonUiFactory = new GrpcJsonUiWebAppFactory();
+    grpcJsonUiFactory.CreateClient();
 
     await ShowsCookieOnClick();
   }
@@ -84,11 +96,11 @@ public class Cookies
   [Fact]
   public async Task GraphQlCookieService_ShowsCookieOnClick()
   {
-    using var graphQlUiFactory = new GraphQlUiWebAppFactory();
-    graphQlUiFactory.CreateClient();
-
     using var graphQlFactory = new GraphQlWebAppFactory();
     graphQlFactory.CreateClient();
+
+    using var graphQlUiFactory = new GraphQlUiWebAppFactory();
+    graphQlUiFactory.CreateClient();
 
     await ShowsCookieOnClick();
   }
