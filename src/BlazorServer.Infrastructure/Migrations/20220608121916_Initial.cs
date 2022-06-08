@@ -4,8 +4,10 @@
 
 namespace BlazorServer.Infrastructure.Migrations
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -82,6 +84,7 @@ namespace BlazorServer.Infrastructure.Migrations
                 values: new object[] { 12, "フレームワークのベンチマーク" });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

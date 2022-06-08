@@ -10,13 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220428164142_Initial")]
+    [Migration("20220608121916_Initial")]
     partial class Initial
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-preview.4.22229.2");
 
             modelBuilder.Entity("BlazorServer.Core.Entities.Cookie", b =>
                 {

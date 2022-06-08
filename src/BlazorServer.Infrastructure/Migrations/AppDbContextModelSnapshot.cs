@@ -14,7 +14,7 @@ namespace BlazorServer.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-preview.4.22229.2");
 
             modelBuilder.Entity("BlazorServer.Core.Entities.Cookie", b =>
                 {

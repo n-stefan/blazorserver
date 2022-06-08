@@ -8,4 +8,5 @@ global using Grpc;
 global using Grpc.Core;
 global using Grpc.Net.Client;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Design;
 global using Microsoft.Extensions.Configuration;
