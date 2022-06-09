@@ -4,12 +4,11 @@ namespace BlazorServer.UnitTests.Core.Entities;
 public class CookieConstruction
 {
   private readonly int _testId = 1;
-  private readonly string _testMessage = "fortune: No such file or directory";
   private Cookie? _testCookie;
 
   private Cookie CreateCookie()
   {
-    return new Cookie { Id = _testId, Message = _testMessage };
+    return new Cookie { Id = _testId, Message = SeedData.Cookies[0] };
   }
 
   [Fact]
@@ -25,6 +24,6 @@ public class CookieConstruction
   {
     _testCookie = CreateCookie();
 
-    Assert.Equal(_testMessage, _testCookie.Message);
+    Assert.Equal(SeedData.Cookies[0], _testCookie.Message);
   }
 }

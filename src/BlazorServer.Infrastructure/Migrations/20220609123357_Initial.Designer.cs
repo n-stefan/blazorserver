@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220608121916_Initial")]
+    [Migration("20220609123357_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

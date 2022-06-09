@@ -1,4 +1,5 @@
-﻿global using BlazorServer.Core.Interfaces;
+﻿global using BlazorServer.Core.Entities;
+global using BlazorServer.Core.Interfaces;
 global using BlazorServer.FunctionalTests.WebApplicationFactories;
 global using BlazorServer.Infrastructure.Services;
 global using BlazorServer.Web.Api.GraphQl;
