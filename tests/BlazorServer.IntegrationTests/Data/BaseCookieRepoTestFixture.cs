@@ -1,30 +1,31 @@
 ﻿
 namespace BlazorServer.IntegrationTests.Data;
 
-public abstract class BaseCookieRepoTestFixture
+public abstract class BaseCookieRepoTestFixture : IDisposable
 {
-  protected AppDbContext _dbContext;
+  private readonly DbConnection _connection;
+  private readonly DbContextOptions<AppDbContext> _contextOptions;
 
   protected BaseCookieRepoTestFixture()
   {
-    var options = CreateNewContextOptions();
+    _connection = new SqliteConnection("Filename=:memory:");
+    _connection.Open();
 
-    _dbContext = new AppDbContext(options);
-  }
+    _contextOptions = new DbContextOptionsBuilder<AppDbContext>()
+      .UseSqlite(_connection)
+      .Options;
 
-  protected static DbContextOptions<AppDbContext> CreateNewContextOptions()
-  {
-    var serviceProvider = new ServiceCollection()
-        .AddEntityFrameworkInMemoryDatabase()
-        .BuildServiceProvider();
+    using var context = new AppDbContext(_contextOptions);
 
-    var builder = new DbContextOptionsBuilder<AppDbContext>();
-    builder.UseInMemoryDatabase("blazorserver")
-           .UseInternalServiceProvider(serviceProvider);
+    context.Database.EnsureCreated();
 
-    return builder.Options;
+    context.Cookies.AddRange(SeedData.Cookies.Select(c => new Cookie { Message = c }));
+    context.SaveChanges();
   }
 
   protected CookieRepository GetRepository() =>
-    new(_dbContext);
+    new(new AppDbContext(_contextOptions));
+
+  public void Dispose() =>
+    _connection.Dispose();
 }
