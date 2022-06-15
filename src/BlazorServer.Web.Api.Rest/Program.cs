@@ -1,8 +1,10 @@
-
+﻿
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services
+  .AddControllers()
+  .AddOData(o => o.EnableQueryFeatures().AddRouteComponents("odata", GetEdmModel()));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,3 +29,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static IEdmModel GetEdmModel()
+{
+  var modelBuilder = new ODataConventionModelBuilder();
+  var cookie = modelBuilder.EntityType<Cookie>();
+  cookie.HasKey(c => c.Id);
+  cookie.Property(c => c.Message);
+  modelBuilder.EntitySet<Cookie>("Cookies");
+  return modelBuilder.GetEdmModel();
+}
