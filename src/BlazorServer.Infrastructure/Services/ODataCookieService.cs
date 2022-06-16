@@ -15,7 +15,7 @@ public class ODataCookieService : ICookieService
   {
     try
     {
-      var response = await _httpClient.GetAsync("odata/cookie/random");
+      var response = await _httpClient.GetAsync("odata/cookie");
       switch (response.StatusCode)
       {
         case HttpStatusCode.OK:

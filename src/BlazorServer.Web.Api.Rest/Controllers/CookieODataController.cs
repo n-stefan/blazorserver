@@ -1,7 +1,7 @@
 ﻿
 namespace BlazorServer.Web.Api.Rest.Controllers;
 
-[Route("odata/cookie")]
+[Route("odata")]
 public class CookieODataController : ODataController
 {
   private readonly IRepository<Cookie> _repository;
@@ -13,7 +13,7 @@ public class CookieODataController : ODataController
     _logger = logger;
   }
 
-  [HttpGet("random")]
+  [HttpGet("cookie")]
   [EnableQuery]
   public async Task<ActionResult<Cookie>> GetRandomCookie()
   {

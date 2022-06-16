@@ -36,6 +36,6 @@ static IEdmModel GetEdmModel()
   var cookie = modelBuilder.EntityType<Cookie>();
   cookie.HasKey(c => c.Id);
   cookie.Property(c => c.Message);
-  modelBuilder.EntitySet<Cookie>("Cookies");
+  modelBuilder.EntitySet<Cookie>("cookie");
   return modelBuilder.GetEdmModel();
 }
