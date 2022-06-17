@@ -54,6 +54,18 @@ public class Cookies
   }
 
   [Fact]
+  public async Task ODataCookieService_ShowsCookieOnClick()
+  {
+    using var restFactory = new RestWebAppFactory();
+    restFactory.CreateClient();
+
+    using var oDataUiFactory = new ODataUiWebAppFactory();
+    oDataUiFactory.CreateClient();
+
+    await ShowsCookieOnClick();
+  }
+
+  [Fact]
   public async Task GrpcCookieService_ShowsCookieOnClick()
   {
     using var grpcFactory = new GrpcWebAppFactory();
