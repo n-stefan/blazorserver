@@ -15,6 +15,7 @@ builder.Services.AddScoped<ICookieService, DirectCookieService>();
 //builder.Services.AddHttpClient<ICookieService, RestCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["RestBaseUrl"]));
 //builder.Services.AddHttpClient<ICookieService, ODataCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["RestBaseUrl"]));
 //builder.Services.AddHttpClient<ICookieService, GraphQlCookieService>(client => client.BaseAddress = new Uri(builder.Configuration["GraphQlBaseUrl"]));
+//builder.Services.AddScoped<ICookieService, WcfCookieService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,10 @@
+﻿global using System.Diagnostics.CodeAnalysis;
+global using System.Runtime.Serialization;
+global using BlazorServer.Core.Entities;
+global using BlazorServer.Infrastructure.Data;
+global using BlazorServer.SharedKernel.Interfaces;
+global using BlazorServer.Web.Api.Wcf.Services;
+global using CoreWCF;
+global using CoreWCF.Configuration;
+global using CoreWCF.Description;
+global using Microsoft.EntityFrameworkCore;

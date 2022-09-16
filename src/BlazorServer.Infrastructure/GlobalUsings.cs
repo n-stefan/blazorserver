@@ -1,4 +1,5 @@
 ﻿global using System.Net.Http.Json;
+global using System.ServiceModel;
 global using BlazorServer.Core.Dtos;
 global using BlazorServer.Core.Entities;
 global using BlazorServer.Core.Interfaces;
