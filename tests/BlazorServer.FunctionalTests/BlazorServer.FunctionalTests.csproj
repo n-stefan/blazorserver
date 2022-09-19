@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\src\BlazorServer.Web.Api.GraphQl\BlazorServer.Web.Api.GraphQl.csproj" />
     <ProjectReference Include="..\..\src\BlazorServer.Web.Api.Grpc\BlazorServer.Web.Api.Grpc.csproj" />
     <ProjectReference Include="..\..\src\BlazorServer.Web.Api.Rest\BlazorServer.Web.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\src\BlazorServer.Web.Api.Wcf\BlazorServer.Web.Api.Wcf.csproj" />
     <ProjectReference Include="..\..\src\BlazorServer.Web.Ui\BlazorServer.Web.Ui.csproj" />
   </ItemGroup>
 

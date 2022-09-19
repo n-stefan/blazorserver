@@ -5,6 +5,7 @@ global using BlazorServer.Infrastructure.Services;
 global using BlazorServer.Web.Api.GraphQl;
 global using BlazorServer.Web.Api.Grpc;
 global using BlazorServer.Web.Api.Rest;
+global using BlazorServer.Web.Api.Wcf;
 global using BlazorServer.Web.Ui;
 global using Microsoft.AspNetCore.Hosting;
 global using Microsoft.AspNetCore.Mvc.Testing;

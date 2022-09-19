@@ -100,4 +100,16 @@ public class Cookies
 
     await ShowsCookieOnClick();
   }
+
+  [Fact]
+  public async Task WcfCookieService_ShowsCookieOnClick()
+  {
+    using var wcfFactory = new WcfWebAppFactory();
+    wcfFactory.CreateClient();
+
+    using var wcfUiFactory = new WcfUiWebAppFactory();
+    wcfUiFactory.CreateClient();
+
+    await ShowsCookieOnClick();
+  }
 }
