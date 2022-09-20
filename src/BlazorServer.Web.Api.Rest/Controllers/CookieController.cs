@@ -2,7 +2,7 @@
 namespace BlazorServer.Web.Api.Rest.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/v1/[controller]")]
 public class CookieController : ControllerBase
 {
     private readonly IRepository<Cookie> _repository;

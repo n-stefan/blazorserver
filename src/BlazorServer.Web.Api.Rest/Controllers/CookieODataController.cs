@@ -1,7 +1,7 @@
 ﻿
 namespace BlazorServer.Web.Api.Rest.Controllers;
 
-[Route("odata")]
+[Route("/v1/odata")]
 public class CookieODataController : ODataController
 {
   private readonly IRepository<Cookie> _repository;
