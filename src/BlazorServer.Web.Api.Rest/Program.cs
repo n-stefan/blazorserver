@@ -10,7 +10,13 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContextPool<AppDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+var connection = builder.Configuration.GetConnectionString("Default");
+if (string.IsNullOrWhiteSpace(connection))
+{
+  throw new Exception("Connectionstring 'Default' not configured!");
+}
+
+builder.Services.AddDbContextPool<AppDbContext>(o => o.UseSqlite(connection));
 builder.Services.AddScoped<IRepository<Cookie>, CookieRepository>();
 
 var app = builder.Build();

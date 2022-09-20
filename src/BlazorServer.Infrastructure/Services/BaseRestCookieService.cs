@@ -24,7 +24,9 @@ public abstract class BaseRestCookieService : ICookieService
       {
         case HttpStatusCode.OK:
           var cookie = await response.Content.ReadFromJsonAsync<Cookie>();
-          return new CookieDto(cookie.Id, cookie.Message);
+          return (cookie != null) ?
+            new CookieDto(cookie.Id, cookie.Message) :
+            new CookieDto(CookieDto.AnErrorOccurred);
         case HttpStatusCode.NotFound:
           return new CookieDto(CookieDto.CookieNotFound);
         default:

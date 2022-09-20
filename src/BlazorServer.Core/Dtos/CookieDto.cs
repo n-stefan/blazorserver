@@ -5,9 +5,9 @@ public class CookieDto
 {
   public int Id { get; set; }
 
-  public string Message { get; set; }
+  public string? Message { get; set; }
 
-  public string Error { get; }
+  public string? Error { get; }
 
   public const string CookieNotFound = "Cookie not found.";
 
@@ -16,7 +16,7 @@ public class CookieDto
   public CookieDto() { }
 
   public CookieDto(string error) =>
-      Error = error;
+    Error = error;
 
   public CookieDto(int id, string message)
   {

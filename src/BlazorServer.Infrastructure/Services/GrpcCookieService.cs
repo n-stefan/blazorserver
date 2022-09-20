@@ -12,7 +12,13 @@ public class GrpcCookieService : ICookieService
   {
     try
     {
-      var channel = GrpcChannel.ForAddress(_configuration["GrpcBaseUrl"]);
+      var url = _configuration["GrpcBaseUrl"];
+      if (string.IsNullOrWhiteSpace(url))
+      {
+        throw new Exception("'GrpcBaseUrl' not configured!");
+      }
+
+      var channel = GrpcChannel.ForAddress(url);
       var client = new CookieContract.CookieContractClient(channel);
       var cookie = await client.GetRandomCookieAsync(new Empty());
       return new CookieDto(cookie.Id, cookie.Message);

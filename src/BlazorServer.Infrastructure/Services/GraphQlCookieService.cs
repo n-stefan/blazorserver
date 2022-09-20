@@ -18,6 +18,10 @@ public class GraphQlCookieService : ICookieService
       };
       var response = await _httpClient.PostAsJsonAsync("graphql", payload);
       var result = await response.Content.ReadFromJsonAsync<CookieResultDto>();
+      if (result == null)
+      {
+        return new CookieDto(CookieDto.AnErrorOccurred);
+      }
       return result.Errors == null
           ? new CookieDto(result.Data.RandomCookie.Id, result.Data.RandomCookie.Message)
           : new CookieDto(result.Errors[0].Message);

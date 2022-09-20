@@ -25,8 +25,7 @@ public class DirectCookieService_GetRandomCookie
   public async Task ReturnsNotFoundDto_Given_CookieNotFound()
   {
     var expectedErrorMessage = CookieDto.CookieNotFound;
-    Cookie? cookie = null;
-    _mockRepository.Setup(r => r.GetRandom()).ReturnsAsync(cookie);
+    _mockRepository.Setup(r => r.GetRandom()).ReturnsAsync(() => null);
 
     var result = await _directCookieService.GetRandomCookie();
 

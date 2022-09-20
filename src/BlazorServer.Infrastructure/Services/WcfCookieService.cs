@@ -13,7 +13,7 @@ public class WcfCookieService : ICookieService
 
   public async Task<CookieDto> GetRandomCookie()
   {
-    CookieServiceClient client = null;
+    CookieServiceClient? client = null;
     try
     {
       client = new CookieServiceClient(CookieServiceClient.EndpointConfiguration.WSHttpBinding_ICookieService, $"{_configuration["WcfBaseUrl"]}/CookieService/WSHttp");
@@ -31,7 +31,10 @@ public class WcfCookieService : ICookieService
     }
     finally
     {
-      await client.CloseAsync();
+      if (client != null)
+      {
+        await client.CloseAsync();
+      }
     }
   }
 }
