@@ -33,7 +33,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task DirectCookieService_ShowsCookieOnClick()
+  public async Task DirectCookieServiceShowsCookieOnClick()
   {
     using var uiFactory = new UiWebAppFactory();
     uiFactory.CreateClient();
@@ -42,7 +42,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task RestCookieService_ShowsCookieOnClick()
+  public async Task RestCookieServiceShowsCookieOnClick()
   {
     using var restFactory = new RestWebAppFactory();
     restFactory.CreateClient();
@@ -54,7 +54,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task ODataCookieService_ShowsCookieOnClick()
+  public async Task ODataCookieServiceShowsCookieOnClick()
   {
     using var restFactory = new RestWebAppFactory();
     restFactory.CreateClient();
@@ -66,7 +66,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task GrpcCookieService_ShowsCookieOnClick()
+  public async Task GrpcCookieServiceShowsCookieOnClick()
   {
     using var grpcFactory = new GrpcWebAppFactory();
     grpcFactory.CreateClient();
@@ -78,7 +78,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task GrpcJsonCookieService_ShowsCookieOnClick()
+  public async Task GrpcJsonCookieServiceShowsCookieOnClick()
   {
     using var grpcFactory = new GrpcWebAppFactory();
     grpcFactory.CreateClient();
@@ -90,7 +90,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task GraphQlCookieService_ShowsCookieOnClick()
+  public async Task GraphQlCookieServiceShowsCookieOnClick()
   {
     using var graphQlFactory = new GraphQlWebAppFactory();
     graphQlFactory.CreateClient();
@@ -102,7 +102,7 @@ public class Cookies
   }
 
   [Fact]
-  public async Task WcfCookieService_ShowsCookieOnClick()
+  public async Task WcfCookieServiceShowsCookieOnClick()
   {
     using var wcfFactory = new WcfWebAppFactory();
     wcfFactory.CreateClient();

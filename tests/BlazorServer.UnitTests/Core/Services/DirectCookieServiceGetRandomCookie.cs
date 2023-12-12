@@ -1,16 +1,16 @@
 ﻿
 namespace BlazorServer.UnitTests.Core.Services;
 
-public class DirectCookieService_GetRandomCookie
+public class DirectCookieServiceGetRandomCookie
 {
   private readonly Mock<IRepository<Cookie>> _mockRepository = new();
   private readonly DirectCookieService _directCookieService;
 
-  public DirectCookieService_GetRandomCookie() =>
+  public DirectCookieServiceGetRandomCookie() =>
     _directCookieService = new DirectCookieService(_mockRepository.Object);
 
   [Fact]
-  public async Task ReturnsErrorDto_Given_DataAccessException()
+  public async Task ReturnsErrorDtoGivenDataAccessException()
   {
     var expectedErrorMessage = CookieDto.AnErrorOccurred;
     _mockRepository.Setup(r => r.GetRandom()).ThrowsAsync(new Exception());
@@ -22,7 +22,7 @@ public class DirectCookieService_GetRandomCookie
   }
 
   [Fact]
-  public async Task ReturnsNotFoundDto_Given_CookieNotFound()
+  public async Task ReturnsNotFoundDtoGivenCookieNotFound()
   {
     var expectedErrorMessage = CookieDto.CookieNotFound;
     _mockRepository.Setup(r => r.GetRandom()).ReturnsAsync(() => null);
@@ -34,7 +34,7 @@ public class DirectCookieService_GetRandomCookie
   }
 
   [Fact]
-  public async Task ReturnsCookieDto_Given_CookieFound()
+  public async Task ReturnsCookieDtoGivenCookieFound()
   {
     string? expectedErrorMessage = null;
     var index = Random.Shared.Next(0, SeedData.Cookies.Length);
