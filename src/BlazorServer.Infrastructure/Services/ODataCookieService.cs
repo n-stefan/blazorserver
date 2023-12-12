@@ -1,7 +1,6 @@
 ﻿
 namespace BlazorServer.Infrastructure.Services;
 
-public class ODataCookieService : BaseRestCookieService
+public class ODataCookieService(HttpClient httpClient) : BaseRestCookieService(httpClient, "/v1/odata/cookie")
 {
-  public ODataCookieService(HttpClient httpClient) : base(httpClient, "/v1/odata/cookie") { }
 }

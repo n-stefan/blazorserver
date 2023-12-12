@@ -4,19 +4,14 @@ using Wcf;
 
 namespace BlazorServer.Infrastructure.Services;
 
-public class WcfCookieService : ICookieService
+public class WcfCookieService(IConfiguration configuration) : ICookieService
 {
-  private readonly IConfiguration _configuration;
-
-  public WcfCookieService(IConfiguration configuration) =>
-    _configuration = configuration;
-
   public async Task<CookieDto> GetRandomCookie()
   {
     CookieServiceClient? client = null;
     try
     {
-      client = new CookieServiceClient(CookieServiceClient.EndpointConfiguration.WSHttpBinding_ICookieService, $"{_configuration["WcfBaseUrl"]}/CookieService/WSHttp");
+      client = new CookieServiceClient(CookieServiceClient.EndpointConfiguration.WSHttpBinding_ICookieService, $"{configuration["WcfBaseUrl"]}/CookieService/WSHttp");
       await client.OpenAsync();
       var cookie = await client.GetRandomCookieAsync();
       return new CookieDto(cookie.Id, cookie.Message);

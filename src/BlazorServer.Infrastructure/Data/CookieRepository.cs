@@ -1,7 +1,6 @@
 ﻿
 namespace BlazorServer.Infrastructure.Data;
 
-public class CookieRepository : EfRepository<Cookie, AppDbContext>
+public class CookieRepository(AppDbContext context) : EfRepository<Cookie, AppDbContext>(context)
 {
-  public CookieRepository(AppDbContext context) : base(context) { }
 }

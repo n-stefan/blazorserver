@@ -1,13 +1,8 @@
 ﻿
 namespace BlazorServer.Infrastructure.Services;
 
-public class GraphQlCookieService : ICookieService
+public class GraphQlCookieService(HttpClient httpClient) : ICookieService
 {
-  private readonly HttpClient _httpClient;
-
-  public GraphQlCookieService(HttpClient httpClient) =>
-      _httpClient = httpClient;
-
   public async Task<CookieDto> GetRandomCookie()
   {
     try
@@ -16,7 +11,7 @@ public class GraphQlCookieService : ICookieService
       {
         query = "{ randomCookie { id message } }"
       };
-      var response = await _httpClient.PostAsJsonAsync("graphql", payload);
+      var response = await httpClient.PostAsJsonAsync("graphql", payload);
       var result = await response.Content.ReadFromJsonAsync<CookieResultDto>();
       if (result == null)
       {

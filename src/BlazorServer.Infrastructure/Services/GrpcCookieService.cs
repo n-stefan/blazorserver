@@ -1,18 +1,13 @@
 ﻿
 namespace BlazorServer.Infrastructure.Services;
 
-public class GrpcCookieService : ICookieService
+public class GrpcCookieService(IConfiguration configuration) : ICookieService
 {
-  private readonly IConfiguration _configuration;
-
-  public GrpcCookieService(IConfiguration configuration) =>
-      _configuration = configuration;
-
   public async Task<CookieDto> GetRandomCookie()
   {
     try
     {
-      var url = _configuration["GrpcBaseUrl"];
+      var url = configuration["GrpcBaseUrl"];
       if (string.IsNullOrWhiteSpace(url))
       {
         throw new Exception("'GrpcBaseUrl' not configured!");

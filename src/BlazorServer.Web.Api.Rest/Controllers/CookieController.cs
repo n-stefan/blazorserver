@@ -3,21 +3,12 @@ namespace BlazorServer.Web.Api.Rest.Controllers;
 
 [ApiController]
 [Route("/v1/[controller]")]
-public class CookieController : ControllerBase
+public class CookieController(IRepository<Cookie> repository, ILogger<CookieController> logger) : ControllerBase
 {
-    private readonly IRepository<Cookie> _repository;
-    private readonly ILogger<CookieController> _logger;
-
-    public CookieController(IRepository<Cookie> repository, ILogger<CookieController> logger)
-    {
-        _repository = repository;
-        _logger = logger;
-    }
-
     [HttpGet("random")]
     public async Task<ActionResult<Cookie>> GetRandomCookie()
     {
-        var cookie = await _repository.GetRandom();
+        var cookie = await repository.GetRandom();
         return (cookie == null) ?
             NotFound() :
             Ok(cookie);

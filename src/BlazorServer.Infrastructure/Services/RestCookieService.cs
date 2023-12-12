@@ -1,7 +1,6 @@
 ﻿
 namespace BlazorServer.Infrastructure.Services;
 
-public class RestCookieService : BaseRestCookieService
+public class RestCookieService(HttpClient httpClient) : BaseRestCookieService(httpClient, "/v1/cookie/random")
 {
-  public RestCookieService(HttpClient httpClient) : base(httpClient, "/v1/cookie/random") { }
 }
