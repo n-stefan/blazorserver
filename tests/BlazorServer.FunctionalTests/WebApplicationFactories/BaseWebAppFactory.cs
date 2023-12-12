@@ -5,6 +5,8 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
 {
   protected override IHost CreateHost(IHostBuilder builder)
   {
+    ArgumentNullException.ThrowIfNull(builder);
+
     var testHost = builder.Build();
 
     builder.ConfigureWebHost(webHostBuilder => webHostBuilder.UseKestrel());

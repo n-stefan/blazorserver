@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
+    ArgumentNullException.ThrowIfNull(modelBuilder);
+
     modelBuilder.Entity<Cookie>().HasData(
         new Cookie { Id = 1, Message = SeedData.Cookies[0] },
         new Cookie { Id = 2, Message = SeedData.Cookies[1] },
