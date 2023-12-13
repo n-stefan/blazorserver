@@ -4,22 +4,13 @@ using System.Net;
 
 namespace BlazorServer.Infrastructure.Services;
 
-public abstract class BaseRestCookieService : ICookieService
+public abstract class BaseRestCookieService(HttpClient httpClient, Uri requestUri) : ICookieService
 {
-  private readonly HttpClient _httpClient;
-  private readonly string _requestUri;
-
-  protected BaseRestCookieService(HttpClient httpClient, string requestUri)
-  {
-    _httpClient = httpClient;
-    _requestUri = requestUri;
-  }
-
   public async Task<CookieDto> GetRandomCookie()
   {
     try
     {
-      var response = await _httpClient.GetAsync(_requestUri);
+      var response = await httpClient.GetAsync(requestUri);
       switch (response.StatusCode)
       {
         case HttpStatusCode.OK:

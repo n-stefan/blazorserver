@@ -1,10 +1,10 @@
 ﻿
 namespace BlazorServer.Core.Entities;
 
-public class SeedData
+public static class SeedData
 {
   public static readonly string[] Cookies =
-  {
+  [
     "fortune: No such file or directory",
     "A computer scientist is someone who fixes things that aren't broken.",
     "After enough decimal places, nobody gives a damn.",
@@ -17,5 +17,5 @@ public class SeedData
     "Computers make very fast, very accurate mistakes.",
     "<script>alert('This should not be displayed in a browser alert box.');</script>",
     "フレームワークのベンチマーク"
-  };
+  ];
 }

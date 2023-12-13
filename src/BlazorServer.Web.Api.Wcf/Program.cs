@@ -16,17 +16,14 @@ var app = builder.Build();
 var wsHttpBinding = new WSHttpBinding(SecurityMode.Transport);
 wsHttpBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
 
-app.UseServiceModel(builder =>
-{
-  builder
+app.UseServiceModel(builder => builder
     .AddService<CookieService>(options =>
     {
       var baseAddresses = app.Configuration["BaseAddresses"].Split(';');
       Array.ForEach(baseAddresses, baseAddress => options.BaseAddresses.Add(new Uri(baseAddress)));
     })
     .AddServiceEndpoint<CookieService, ICookieService>(new BasicHttpBinding(), "/CookieService/BasicHttp")
-    .AddServiceEndpoint<CookieService, ICookieService>(wsHttpBinding, "/CookieService/WSHttp");
-});
+    .AddServiceEndpoint<CookieService, ICookieService>(wsHttpBinding, "/CookieService/WSHttp"));
 
 var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
 serviceMetadataBehavior.HttpGetEnabled = true;

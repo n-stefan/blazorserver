@@ -1,8 +1,8 @@
 ﻿@page "/"
 
-<PageTitle>Fortune cookies</PageTitle>
-
 @inject ICookieService CookieService
+
+<PageTitle>Fortune cookies</PageTitle>
 
 <h1>Fortune cookies</h1>
 
@@ -10,26 +10,26 @@
 
 <button class="btn btn-primary" @onclick="ShowCookie">Show me my cookie</button>
 
-@if (CookieMessage != null)
+@if (Message != null)
 {
-    <div class="alert alert-info mt-2"><strong>@CookieMessage</strong></div>
+    <div class="alert alert-info mt-2"><strong>@Message</strong></div>
 }
 
-@if (ErrorMessage != null)
+@if (Error != null)
 {
-    <div class="alert alert-danger mt-2"><strong>@ErrorMessage</strong></div>
+    <div class="alert alert-danger mt-2"><strong>@Error</strong></div>
 }
 
 <p>Actual service type: <strong>@CookieService.GetType().Name</strong></p>
 
 @code {
-    private string CookieMessage;
-    private string ErrorMessage;
+    private string Message;
+    private string Error;
 
     private async Task ShowCookie()
     {
         var cookie = await CookieService.GetRandomCookie();
-        CookieMessage = cookie.Message;
-        ErrorMessage = cookie.Error;
+        Message = cookie.Message;
+        Error = cookie.Error;
     }
 }
