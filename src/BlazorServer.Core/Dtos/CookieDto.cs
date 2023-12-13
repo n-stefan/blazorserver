@@ -15,10 +15,10 @@ public class CookieDto
 
   public CookieDto() { }
 
-  public CookieDto(string error) =>
+  public CookieDto(string? error) =>
     Error = error;
 
-  public CookieDto(int id, string message)
+  public CookieDto(int id, string? message)
   {
     Id = id;
     Message = message;

@@ -16,7 +16,7 @@ public class CookieResponse
   public int Id { get; set; }
 
   [DataMember]
-  public string Message { get; set; }
+  public string? Message { get; set; }
 }
 
 [ServiceContract]

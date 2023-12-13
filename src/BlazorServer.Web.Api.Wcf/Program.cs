@@ -19,8 +19,8 @@ wsHttpBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType
 app.UseServiceModel(builder => builder
     .AddService<CookieService>(options =>
     {
-      var baseAddresses = app.Configuration["BaseAddresses"].Split(';');
-      Array.ForEach(baseAddresses, baseAddress => options.BaseAddresses.Add(new Uri(baseAddress)));
+      var baseAddresses = app.Configuration["BaseAddresses"]?.Split(';');
+      if (baseAddresses != null) Array.ForEach(baseAddresses, baseAddress => options.BaseAddresses.Add(new Uri(baseAddress)));
     })
     .AddServiceEndpoint<CookieService, ICookieService>(new BasicHttpBinding(), "/CookieService/BasicHttp")
     .AddServiceEndpoint<CookieService, ICookieService>(wsHttpBinding, "/CookieService/WSHttp"));

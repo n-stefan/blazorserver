@@ -6,10 +6,10 @@ public abstract class EfRepository<TEntity, TContext>(TContext context) : IRepos
   private static readonly Func<TContext, IAsyncEnumerable<int>> _allIdsQuery =
       EF.CompileAsyncQuery((TContext context) => context.Set<TEntity>().Select(e => e.Id));
 
-  private static readonly Func<TContext, int, Task<TEntity>> _entityByIdQuery =
+  private static readonly Func<TContext, int, Task<TEntity?>> _entityByIdQuery =
       EF.CompileAsyncQuery((TContext context, int id) => context.Set<TEntity>().SingleOrDefault(e => e.Id == id));
 
-  public async Task<TEntity> GetRandom()
+  public async Task<TEntity?> GetRandom()
   {
     var ids = new List<int>();
     await foreach (var id in _allIdsQuery(context))

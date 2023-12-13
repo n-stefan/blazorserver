@@ -9,7 +9,7 @@ public class CookieRepositoryGet : BaseCookieRepoTestFixture
     var repository = GetRepository();
     var cookie = await repository.GetRandom();
 
-    Assert.Contains(cookie.Message, SeedData.Cookies);
-    Assert.True(cookie.Id > 0);
+    Assert.Contains(cookie?.Message, SeedData.Cookies);
+    Assert.True(cookie?.Id > 0);
   }
 }
