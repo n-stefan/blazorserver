@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231208164649_Initial")]
+    [Migration("20231214171037_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -26,7 +26,6 @@ namespace BlazorServer.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

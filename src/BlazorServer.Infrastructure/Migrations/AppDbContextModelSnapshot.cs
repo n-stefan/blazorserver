@@ -23,7 +23,6 @@ namespace BlazorServer.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
