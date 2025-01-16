@@ -12,7 +12,7 @@ public class DirectCookieServiceGetRandomCookie
   [Fact]
   public async Task ReturnsErrorDtoGivenDataAccessException()
   {
-    var expectedErrorMessage = CookieDto.AnErrorOccurred;
+    const string expectedErrorMessage = CookieDto.AnErrorOccurred;
     _mockRepository.Setup(r => r.GetRandom()).ThrowsAsync(new Exception());
 
     var result = await _directCookieService.GetRandomCookie();
@@ -24,7 +24,7 @@ public class DirectCookieServiceGetRandomCookie
   [Fact]
   public async Task ReturnsNotFoundDtoGivenCookieNotFound()
   {
-    var expectedErrorMessage = CookieDto.CookieNotFound;
+    const string expectedErrorMessage = CookieDto.CookieNotFound;
     _mockRepository.Setup(r => r.GetRandom()).ReturnsAsync(() => null);
 
     var result = await _directCookieService.GetRandomCookie();
@@ -36,7 +36,7 @@ public class DirectCookieServiceGetRandomCookie
   [Fact]
   public async Task ReturnsCookieDtoGivenCookieFound()
   {
-    string? expectedErrorMessage = null;
+    const string? expectedErrorMessage = null;
     var index = Random.Shared.Next(0, SeedData.Cookies.Length);
     var cookie = new Cookie { Id = index + 1, Message = SeedData.Cookies[index] };
     _mockRepository.Setup(r => r.GetRandom()).ReturnsAsync(cookie);
