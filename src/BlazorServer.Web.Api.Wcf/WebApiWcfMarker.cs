@@ -1,4 +1,4 @@
 ﻿
 namespace BlazorServer.Web.Api.Wcf;
 
-public class WebApiWcfMarker { }
+public class WebApiWcfMarker;

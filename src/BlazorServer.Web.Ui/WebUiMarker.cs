@@ -1,4 +1,4 @@
 ﻿
 namespace BlazorServer.Web.Ui;
 
-public class WebUiMarker { }
+public class WebUiMarker;
