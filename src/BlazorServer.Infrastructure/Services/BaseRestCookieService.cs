@@ -22,7 +22,7 @@ public abstract class BaseRestCookieService(HttpClient httpClient, Uri requestUr
           return new CookieDto(CookieDto.CookieNotFound);
         default:
           return new CookieDto(CookieDto.AnErrorOccurred);
-      };
+      }
     }
     catch (Exception)
     {

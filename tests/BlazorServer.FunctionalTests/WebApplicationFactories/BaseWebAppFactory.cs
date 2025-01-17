@@ -23,9 +23,15 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
 
     return _fakeHost;
   }
-}
 
-public class FakeStartup
-{
-  public void Configure() { }
+  protected override void Dispose(bool disposing)
+  {
+    base.Dispose(disposing);
+    _fakeHost.Dispose();
+  }
+
+  private class FakeStartup
+  {
+    public void Configure() { }
+  }
 }
