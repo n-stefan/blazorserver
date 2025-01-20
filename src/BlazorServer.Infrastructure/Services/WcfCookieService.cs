@@ -16,7 +16,7 @@ public class WcfCookieService(IConfiguration configuration) : ICookieService
       var cookie = await client.GetRandomCookieAsync();
       return new CookieDto(cookie.Id, cookie.Message);
     }
-    catch (FaultException ex) when (ex.Message == CookieDto.CookieNotFound)
+    catch (FaultException ex) when (string.Equals(ex.Message, CookieDto.CookieNotFound, StringComparison.Ordinal))
     {
       return new CookieDto(CookieDto.CookieNotFound);
     }

@@ -18,8 +18,7 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
     ArgumentNullException.ThrowIfNull(builder);
 
     builder.ConfigureWebHost(x => x.UseKestrelCore());
-    var host = builder.Build();
-    host.Start();
+    builder.Build();
 
     return _fakeHost;
   }
@@ -30,7 +29,7 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
     _fakeHost.Dispose();
   }
 
-  private class FakeStartup
+  private sealed class FakeStartup
   {
     public void Configure() { }
   }
