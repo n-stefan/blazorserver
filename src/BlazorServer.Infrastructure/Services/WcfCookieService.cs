@@ -6,7 +6,7 @@ namespace BlazorServer.Infrastructure.Services;
 
 public class WcfCookieService(IConfiguration configuration) : ICookieService
 {
-  public async Task<CookieDto> GetRandomCookie()
+  public async Task<CookieDto> GetRandomCookieAsync()
   {
     CookieServiceClient? client = null;
     try

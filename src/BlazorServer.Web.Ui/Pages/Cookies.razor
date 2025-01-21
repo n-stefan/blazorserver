@@ -28,7 +28,7 @@
 
     private async Task ShowCookie()
     {
-        var cookie = await CookieService.GetRandomCookie();
+        var cookie = await CookieService.GetRandomCookieAsync();
         Message = cookie.Message;
         Error = cookie.Error;
     }

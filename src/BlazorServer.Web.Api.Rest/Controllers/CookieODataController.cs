@@ -6,9 +6,9 @@ public class CookieODataController(IRepository<Cookie> repository, ILogger<Cooki
 {
   [HttpGet("cookie")]
   [EnableQuery]
-  public async Task<ActionResult<Cookie>> GetRandomCookie()
+  public async Task<ActionResult<Cookie>> GetRandomCookieAsync()
   {
-    var cookie = await repository.GetRandom();
+    var cookie = await repository.GetRandomAsync();
     return (cookie == null) ?
       NotFound() :
       Ok(cookie);

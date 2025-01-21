@@ -5,5 +5,5 @@ namespace BlazorServer.Web.Api.Wcf.Services;
 public interface ICookieService
 {
   [OperationContract]
-  Task<CookieResponse> GetRandomCookie();
+  Task<CookieResponse> GetRandomCookieAsync();
 }

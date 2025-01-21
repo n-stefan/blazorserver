@@ -6,7 +6,7 @@ namespace BlazorServer.Infrastructure.Services;
 
 public abstract class BaseRestCookieService(HttpClient httpClient, Uri requestUri) : ICookieService
 {
-  public async Task<CookieDto> GetRandomCookie()
+  public async Task<CookieDto> GetRandomCookieAsync()
   {
     try
     {

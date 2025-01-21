@@ -3,7 +3,7 @@ namespace BlazorServer.Infrastructure.Services;
 
 public class GrpcCookieService(IConfiguration configuration) : ICookieService
 {
-  public async Task<CookieDto> GetRandomCookie()
+  public async Task<CookieDto> GetRandomCookieAsync()
   {
     try
     {

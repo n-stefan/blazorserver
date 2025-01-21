@@ -3,7 +3,7 @@ namespace BlazorServer.FunctionalTests.Pages;
 
 public class Cookies
 {
-  private static async Task ShowsCookieOnClick()
+  private static async Task ShowsCookieOnClickAsync()
   {
     using var playwright = await Playwright.CreateAsync();
 
@@ -33,16 +33,16 @@ public class Cookies
   }
 
   [Fact]
-  public async Task DirectCookieServiceShowsCookieOnClick()
+  public async Task DirectCookieServiceShowsCookieOnClickAsync()
   {
     await using var uiFactory = new UiWebAppFactory();
     uiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task RestCookieServiceShowsCookieOnClick()
+  public async Task RestCookieServiceShowsCookieOnClickAsync()
   {
     await using var restFactory = new RestWebAppFactory();
     restFactory.CreateClient();
@@ -50,11 +50,11 @@ public class Cookies
     await using var restUiFactory = new RestUiWebAppFactory();
     restUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task ODataCookieServiceShowsCookieOnClick()
+  public async Task ODataCookieServiceShowsCookieOnClickAsync()
   {
     await using var restFactory = new RestWebAppFactory();
     restFactory.CreateClient();
@@ -62,11 +62,11 @@ public class Cookies
     await using var oDataUiFactory = new ODataUiWebAppFactory();
     oDataUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task GrpcCookieServiceShowsCookieOnClick()
+  public async Task GrpcCookieServiceShowsCookieOnClickAsync()
   {
     await using var grpcFactory = new GrpcWebAppFactory();
     grpcFactory.CreateClient();
@@ -74,11 +74,11 @@ public class Cookies
     await using var grpcUiFactory = new GrpcUiWebAppFactory();
     grpcUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task GrpcJsonCookieServiceShowsCookieOnClick()
+  public async Task GrpcJsonCookieServiceShowsCookieOnClickAsync()
   {
     await using var grpcFactory = new GrpcWebAppFactory();
     grpcFactory.CreateClient();
@@ -86,11 +86,11 @@ public class Cookies
     await using var grpcJsonUiFactory = new GrpcJsonUiWebAppFactory();
     grpcJsonUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task GraphQlCookieServiceShowsCookieOnClick()
+  public async Task GraphQlCookieServiceShowsCookieOnClickAsync()
   {
     await using var graphQlFactory = new GraphQlWebAppFactory();
     graphQlFactory.CreateClient();
@@ -98,11 +98,11 @@ public class Cookies
     await using var graphQlUiFactory = new GraphQlUiWebAppFactory();
     graphQlUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 
   [Fact]
-  public async Task WcfCookieServiceShowsCookieOnClick()
+  public async Task WcfCookieServiceShowsCookieOnClickAsync()
   {
     await using var wcfFactory = new WcfWebAppFactory();
     wcfFactory.CreateClient();
@@ -110,6 +110,6 @@ public class Cookies
     await using var wcfUiFactory = new WcfUiWebAppFactory();
     wcfUiFactory.CreateClient();
 
-    await ShowsCookieOnClick();
+    await ShowsCookieOnClickAsync();
   }
 }

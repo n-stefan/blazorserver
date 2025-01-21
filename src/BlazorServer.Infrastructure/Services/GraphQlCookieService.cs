@@ -3,7 +3,7 @@ namespace BlazorServer.Infrastructure.Services;
 
 public class GraphQlCookieService(HttpClient httpClient) : ICookieService
 {
-  public async Task<CookieDto> GetRandomCookie()
+  public async Task<CookieDto> GetRandomCookieAsync()
   {
     try
     {
