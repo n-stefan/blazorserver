@@ -9,11 +9,6 @@ public class GraphQlUiWebAppFactory : UiWebAppFactory
 
     base.ConfigureWebHost(builder);
 
-    builder.ConfigureServices(services =>
-    {
-      var cookieService = services.Single(descriptor => descriptor.ServiceType == typeof(ICookieService));
-      services.Remove(cookieService);
-      services.AddHttpClient<ICookieService, GraphQlCookieService>(client => client.BaseAddress = new Uri("http://localhost:5005"));
-    });
+    ConfigureServices<GraphQlCookieService>(builder, new Uri("http://localhost:5005"));
   }
 }

@@ -9,11 +9,6 @@ public class GrpcUiWebAppFactory : UiWebAppFactory
 
     base.ConfigureWebHost(builder);
 
-    builder.ConfigureServices(services =>
-    {
-      var cookieService = services.Single(descriptor => descriptor.ServiceType == typeof(ICookieService));
-      services.Remove(cookieService);
-      services.AddScoped<ICookieService, GrpcCookieService>();
-    });
+    ConfigureServices<GrpcCookieService>(builder);
   }
 }

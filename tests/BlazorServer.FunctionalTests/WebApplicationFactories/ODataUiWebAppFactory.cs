@@ -9,11 +9,6 @@ public class ODataUiWebAppFactory : UiWebAppFactory
 
     base.ConfigureWebHost(builder);
 
-    builder.ConfigureServices(services =>
-    {
-      var cookieService = services.Single(descriptor => descriptor.ServiceType == typeof(ICookieService));
-      services.Remove(cookieService);
-      services.AddHttpClient<ICookieService, ODataCookieService>(client => client.BaseAddress = new Uri("https://localhost:5003"));
-    });
+    ConfigureServices<ODataCookieService>(builder, new Uri("https://localhost:5003"));
   }
 }

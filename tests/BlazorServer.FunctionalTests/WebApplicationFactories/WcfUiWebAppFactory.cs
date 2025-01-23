@@ -9,11 +9,6 @@ public class WcfUiWebAppFactory : UiWebAppFactory
 
     base.ConfigureWebHost(builder);
 
-    builder.ConfigureServices(services =>
-    {
-      var cookieService = services.Single(descriptor => descriptor.ServiceType == typeof(ICookieService));
-      services.Remove(cookieService);
-      services.AddScoped<ICookieService, WcfCookieService>();
-    });
+    ConfigureServices<WcfCookieService>(builder);
   }
 }
