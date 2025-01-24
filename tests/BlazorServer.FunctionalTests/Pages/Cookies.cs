@@ -32,6 +32,21 @@ public class Cookies
     Assert.Contains(text, SeedData.Cookies);
   }
 
+  private static async Task SetupAndRunTestAsync<T, U, V, W>()
+    where T : BaseWebAppFactory<V>, new()
+    where U : BaseWebAppFactory<W>, new()
+    where V : class
+    where W : class
+  {
+    await using var factory = new T();
+    factory.CreateClient();
+
+    await using var uiFactory = new U();
+    uiFactory.CreateClient();
+
+    await ShowsCookieOnClickAsync();
+  }
+
   [Fact]
   public async Task DirectCookieServiceShowsCookieOnClickAsync()
   {
@@ -42,74 +57,26 @@ public class Cookies
   }
 
   [Fact]
-  public async Task RestCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var restFactory = new RestWebAppFactory();
-    restFactory.CreateClient();
-
-    await using var restUiFactory = new RestUiWebAppFactory();
-    restUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task RestCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<RestWebAppFactory, RestUiWebAppFactory, WebApiRestMarker, WebUiMarker>();
 
   [Fact]
-  public async Task ODataCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var restFactory = new RestWebAppFactory();
-    restFactory.CreateClient();
-
-    await using var oDataUiFactory = new ODataUiWebAppFactory();
-    oDataUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task ODataCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<RestWebAppFactory, ODataUiWebAppFactory, WebApiRestMarker, WebUiMarker>();
 
   [Fact]
-  public async Task GrpcCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var grpcFactory = new GrpcWebAppFactory();
-    grpcFactory.CreateClient();
-
-    await using var grpcUiFactory = new GrpcUiWebAppFactory();
-    grpcUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task GrpcCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<GrpcWebAppFactory, GrpcUiWebAppFactory, WebApiGrpcMarker, WebUiMarker>();
 
   [Fact]
-  public async Task GrpcJsonCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var grpcFactory = new GrpcWebAppFactory();
-    grpcFactory.CreateClient();
-
-    await using var grpcJsonUiFactory = new GrpcJsonUiWebAppFactory();
-    grpcJsonUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task GrpcJsonCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<GrpcWebAppFactory, GrpcJsonUiWebAppFactory, WebApiGrpcMarker, WebUiMarker>();
 
   [Fact]
-  public async Task GraphQlCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var graphQlFactory = new GraphQlWebAppFactory();
-    graphQlFactory.CreateClient();
-
-    await using var graphQlUiFactory = new GraphQlUiWebAppFactory();
-    graphQlUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task GraphQlCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<GraphQlWebAppFactory, GraphQlUiWebAppFactory, WebApiGraphQlMarker, WebUiMarker>();
 
   [Fact]
-  public async Task WcfCookieServiceShowsCookieOnClickAsync()
-  {
-    await using var wcfFactory = new WcfWebAppFactory();
-    wcfFactory.CreateClient();
-
-    await using var wcfUiFactory = new WcfUiWebAppFactory();
-    wcfUiFactory.CreateClient();
-
-    await ShowsCookieOnClickAsync();
-  }
+  public Task WcfCookieServiceShowsCookieOnClickAsync() =>
+    SetupAndRunTestAsync<WcfWebAppFactory, WcfUiWebAppFactory, WebApiWcfMarker, WebUiMarker>();
 }
