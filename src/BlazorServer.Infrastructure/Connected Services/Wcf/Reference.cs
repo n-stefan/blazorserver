@@ -13,7 +13,7 @@ namespace Wcf
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CookieResponse", Namespace="http://schemas.datacontract.org/2004/07/BlazorServer.Web.Api.Wcf.Services")]
     public partial class CookieResponse : object
     {
@@ -49,7 +49,7 @@ namespace Wcf
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Wcf.ICookieService")]
     public interface ICookieService
     {
@@ -58,13 +58,13 @@ namespace Wcf
         System.Threading.Tasks.Task<Wcf.CookieResponse> GetRandomCookieAsync();
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     public interface ICookieServiceChannel : Wcf.ICookieService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     public partial class CookieServiceClient : System.ServiceModel.ClientBase<Wcf.ICookieService>, Wcf.ICookieService
     {
         
@@ -110,6 +110,13 @@ namespace Wcf
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
+        
+        #if !NET6_0_OR_GREATER
+        public virtual System.Threading.Tasks.Task CloseAsync()
+        {
+            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
+        }
+        #endif
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
