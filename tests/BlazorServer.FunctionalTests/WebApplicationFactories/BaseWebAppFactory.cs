@@ -7,10 +7,12 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
 
   protected BaseWebAppFactory()
   {
-    var server = new TestServer(new WebHostBuilder().UseStartup<FakeStartup>());
-#pragma warning disable EXTEXP0016
-    _fakeHost = FakeHost.CreateBuilder().ConfigureServices(x => x.AddSingleton<IServer>(_ => server)).Build();
-#pragma warning restore EXTEXP0016
+    _fakeHost = new HostBuilder()
+      .ConfigureWebHost(x => x
+        .UseTestServer()
+        .UseStartup<FakeStartup>())
+      .Build();
+    _fakeHost.Start();
   }
 
   protected override IHost CreateHost(IHostBuilder builder)
@@ -31,6 +33,6 @@ public abstract class BaseWebAppFactory<TStartup> : WebApplicationFactory<TStart
 
   private sealed class FakeStartup
   {
-    public void Configure() { }
+    public static void Configure() { }
   }
 }
